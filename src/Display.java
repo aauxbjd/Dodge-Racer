@@ -23,7 +23,7 @@ public class Display extends JPanel
         
         super.paint(g);
         g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null);
-        
+        //okay
     }
 
     
