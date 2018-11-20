@@ -10,7 +10,7 @@ public class DodgeRacer_Road
     
     public DodgeRacer_Road()
     {
-        ImageIcon roadImg = new ImageIcon("E://road1.png");
+        ImageIcon roadImg = new ImageIcon("road1.png");
         road = roadImg.getImage();
         RoadXpos = 0;
         RoadYpos = -339;

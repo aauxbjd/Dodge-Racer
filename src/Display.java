@@ -4,27 +4,41 @@ import javax.swing.*;
 
 
 
-public class Display extends JPanel
+public class Display extends JPanel implements ActionListener
 {
     DodgeRacer_Road Road = new DodgeRacer_Road();
-    
+    Timer time;
     
     public Display()
     {
-
-        
+        // setFocusable(true);
+        time = new Timer(50,this); // this calls actionPerformed every 50 miliseconds
+        time.start();
 
     }
     
+     public void actionPerformed(ActionEvent e)
+    {
+         repaint();   
+         Road.scroll();  //updates road's xPos by adding 5
+    }
 
-    @Override
     public void paint (Graphics g)
     {
         
         super.paint(g);
         g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null);
-        //okay
+        
     }
+    
+
+    
+ 
+    
+   
+        
+    
+   
 
     
    
