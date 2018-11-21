@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Display extends JPanel implements ActionListener
 {
     DodgeRacer_Road Road = new DodgeRacer_Road();
-    //DodgeRacer_Road Road1 = new DodgeRacer_Road();
+    Car playerCar = new Car();
     Timer time;
     
     public Display()
@@ -28,14 +28,15 @@ public class Display extends JPanel implements ActionListener
     {
         
         super.paint(g);
-        g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null);
-        g.drawImage(Road.getImage(), 0, Road.getRoadY2pos(), null);
-        System.err.println(Road.RoadY2pos);
+        g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null); //first road image
+        g.drawImage(Road.getImage(), 0, Road.getRoadY2pos(), null); //second road image
+        //System.err.println(Road.RoadY2pos); 
+        g.drawImage(playerCar.getCarImage(), playerCar.getCarXpos(), playerCar.getCarYpos(), null);
         
-        if(Road.getRoadYpos()>=661)
+        if(Road.getRoadYpos()>=661) // puts the first road image to top after it ends
             Road.setRoadYpos();
-        if (Road.getRoadY2pos()>=661)
-             Road.setRoadY2pos();
+        if (Road.getRoadY2pos()>=661) // puts the second road image to top after it ends
+            Road.setRoadY2pos();
             
         
         
