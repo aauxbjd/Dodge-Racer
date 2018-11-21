@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 
 public class Car 
 {
+    final int CAR_WIDTH = 60;
+    final int CAR_LENGTH = 100;
+    
     Image carImage;
     int carXpos, carYpos, carDx;
     
@@ -17,6 +20,11 @@ public class Car
         carXpos  = 180;
         carYpos  = 450;
         
+    }
+    
+    public Rectangle getBounds() 
+    {
+        return new Rectangle(carXpos+20,carYpos+20, CAR_WIDTH-20, CAR_LENGTH-20);
     }
     
     public void move()       

@@ -1,53 +1,58 @@
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 import javax.swing.*;
 
-public class Obstacle {
-
-    Image img;
-    int x, y, dy;
-    Random rand = new Random();
-
-    public Obstacle(String ObLocation) {
-
-        x = setX();
-        y = -500;
-        ImageIcon l = new ImageIcon(ObLocation);
-        img = l.getImage();
-
+public class Obstacle 
+{
+    final int OBSTACLE_WIDTH = 80;
+    final int OBSTACLE_LENGTH = 130;
+    
+    Image obstacleImg;
+    int obstacleXpos, obstacleYpos, obstacleDYpos;
+    Random randomX = new Random();
+    
+    public Obstacle()
+    {
+        ImageIcon obstacleImgFile = new ImageIcon("ob1.png");
+        obstacleImg = obstacleImgFile.getImage();
+        obstacleYpos = -200;
+        
+        
     }
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, 60, 100);
+    
+     public Rectangle getBounds() 
+    {
+        return new Rectangle(obstacleXpos+20,obstacleYpos+20, OBSTACLE_WIDTH-20, OBSTACLE_LENGTH-20);
     }
-
-    public int setX() {
-        x = rand.nextInt(351);
-        return x;
+    
+    public void move()
+    {
+        obstacleYpos += 5;
     }
-
-//    public int setY()
-//    {
-//        y = rand.nextInt(-150);
-//        return y;
-//    }
-//     
-    public Image getImage() {
-        return img;
+    
+    public Image getObstacleImg()
+    {
+        return obstacleImg;
     }
-
-    public int getX() {
-        return x;
+    
+    public int getObstacleXpos()
+    {
+        return obstacleXpos;
     }
-
-    public int getY() {
-        return y;
+    
+    public int getObstacleYpos()
+    {
+        return obstacleYpos;
     }
-
-    public void move() {
-        y = y + dy;
+    
+        public void setObstacleYpos()
+    {
+        obstacleYpos = -200;
+    }
+        public void setObstacleXpos()
+    {
+        obstacleXpos = randomX.nextInt(251+100) ;
     }
 
 }
