@@ -11,7 +11,7 @@ public class Window extends Display
         frame.setSize(466, 700);
         frame.add(DisplayBg);
         frame.setVisible(true);
-        //System.err.println(frame.getContentPane().getSize().height); // w = 434-450 = 16 / H = 661 - 700 = 39
+       // System.err.println(frame.getContentPane().getSize().width); // w = 434-450 = 16 / H = 661 - 700 = 39
     }
     
     public Window()

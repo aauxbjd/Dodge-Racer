@@ -7,16 +7,17 @@ import javax.swing.*;
 public class Display extends JPanel implements ActionListener
 {
     DodgeRacer_Road Road = new DodgeRacer_Road();
+    //DodgeRacer_Road Road1 = new DodgeRacer_Road();
     Timer time;
     
     public Display()
     {
         // setFocusable(true);
-        time = new Timer(50,this); // this calls actionPerformed every 50 miliseconds
+        time = new Timer(5,this); // this calls actionPerformed every 5 miliseconds
         time.start();
 
     }
-    
+   
      public void actionPerformed(ActionEvent e)
     {
          repaint();   
@@ -28,6 +29,15 @@ public class Display extends JPanel implements ActionListener
         
         super.paint(g);
         g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null);
+        g.drawImage(Road.getImage(), 0, Road.getRoadY2pos(), null);
+        System.err.println(Road.RoadY2pos);
+        
+        if(Road.getRoadYpos()>=661)
+            Road.setRoadYpos();
+        if (Road.getRoadY2pos()>=661)
+             Road.setRoadY2pos();
+            
+        
         
     }
     
