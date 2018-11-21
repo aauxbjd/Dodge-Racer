@@ -11,8 +11,9 @@ public class Display extends JPanel implements ActionListener
     Timer time;
     
     public Display()
-    {
-        // setFocusable(true);
+    { 
+        setFocusable(true);  //setting focus to the screen
+        addKeyListener(new ActionListener());  //adding keylistener on the screen
         time = new Timer(5,this); // this calls actionPerformed every 5 miliseconds
         time.start();
 
@@ -22,6 +23,7 @@ public class Display extends JPanel implements ActionListener
     {
          repaint();   
          Road.scroll();  //updates road's xPos by adding 5
+         playerCar.move();
     }
 
     public void paint (Graphics g)
@@ -31,7 +33,7 @@ public class Display extends JPanel implements ActionListener
         g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null); //first road image
         g.drawImage(Road.getImage(), 0, Road.getRoadY2pos(), null); //second road image
         //System.err.println(Road.RoadY2pos); 
-        g.drawImage(playerCar.getCarImage(), playerCar.getCarXpos(), playerCar.getCarYpos(), null);
+        g.drawImage(playerCar.getCarImage(), playerCar.getCarXpos(), playerCar.getCarYpos(), null);//car image
         
         if(Road.getRoadYpos()>=661) // puts the first road image to top after it ends
             Road.setRoadYpos();
@@ -41,19 +43,24 @@ public class Display extends JPanel implements ActionListener
         
         
     }
-    
+     
+    //connecting ActionListener to the car object to make it move
+     private class ActionListener extends KeyAdapter
+    {
 
-    
- 
-    
-   
-        
-    
-   
+        public void keyReleased(KeyEvent e) {
+            playerCar.keyReleased(e);
+        }
 
+        public void keyPressed(KeyEvent e) {
+            playerCar.keyPressed(e);
+        }
     
-   
+    }
+    
 }
+    
+   
 
 
 //import javax.swing.*;
