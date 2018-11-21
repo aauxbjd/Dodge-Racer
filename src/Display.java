@@ -10,8 +10,8 @@ public class Display extends JPanel implements ActionListener
     Car playerCar = new Car();
     Obstacle obstacle1 = new Obstacle();
     Timer time;
-    
-    JFrame f;
+    int score;
+    boolean lost = false;
     
     public Display()
     { 
@@ -29,17 +29,33 @@ public class Display extends JPanel implements ActionListener
          Road.scroll();  //updates road's xPos by adding 5
          playerCar.move();
          obstacle1.move();
+         score();
+         if(lost == true)
+         {
+             score=0;
+             lost = false;
+         }
+         
     }
      
      public void checkCollision()
      {
          Rectangle playerCarRect = playerCar.getBounds();
          Rectangle obstacleRect1 = obstacle1.getBounds();
-         if ( playerCarRect.intersects(obstacleRect1) )   
+         if ( playerCarRect.intersects(obstacleRect1) || playerCar.getCarXpos() == -20 || playerCar.getCarXpos() == 385  )   
          {
-            JOptionPane.showMessageDialog(f, "YOU LOST!!!!\n\n  \n");   
-            System.exit(0);
+             lost = true;
+           // JOptionPane.showMessageDialog(f, "YOU LOST!!!!\n\n  \n");   
+            //System.exit(0);
          }
+         
+     }
+     
+     public void score()
+     {
+         if(obstacle1.getObstacleYpos()==660 )
+             score++;
+         //System.out.println(score);
      }
      
 
@@ -52,6 +68,7 @@ public class Display extends JPanel implements ActionListener
         g.drawImage(Road.getImage(), 0, Road.getRoadY2pos(), null); //second road image
         g.drawImage(playerCar.getCarImage(), playerCar.getCarXpos(), playerCar.getCarYpos(), null);//car image
         g.drawImage(obstacle1.getObstacleImg(), obstacle1.obstacleXpos, obstacle1.obstacleYpos, null);
+        
        
             // g.drawRect(playerCar.carXpos+20,playerCar.carYpos+20, playerCar.CAR_WIDTH-20, playerCar.CAR_LENGTH-20);
             // g.drawRect(obstacle1.obstacleXpos+20,obstacle1.obstacleYpos+20, obstacle1.OBSTACLE_WIDTH-20, obstacle1.OBSTACLE_LENGTH-20);
@@ -66,8 +83,8 @@ public class Display extends JPanel implements ActionListener
             obstacle1.setObstacleYpos();
             obstacle1.setObstacleXpos();   
         }
-            
-        
+        g.setColor(Color.green);    
+        g.drawString("SCORE : " +score, 50, 50);
         
     }
 
@@ -87,26 +104,3 @@ public class Display extends JPanel implements ActionListener
     }
     
 }
-    
-   
-
-
-//import javax.swing.*;
-//import java.awt.*;
-//
-//public class Display extends Window {
-//
-//    public static void main(String[] args) {
-//      // new Menu();
-//      JFrame frame = new JFrame("Game");
-//        frame.add(new Window());
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(465, 700);
-//        frame.setVisible(true);
-//    }
-//
-//    public Display() {
-//       
-//    }
-//
-//}
