@@ -22,6 +22,11 @@ public class DodgeRacer_Road
         RoadYpos+=5;
         RoadY2pos+=5;
         
+        if (getRoadYpos()>=661)             // puts the first road image to top after it ends
+            setRoadYpos();
+        if (getRoadY2pos()>=661)           // puts the second road image to top after it ends
+            setRoadY2pos();
+        
     }
     
     public Image getImage()

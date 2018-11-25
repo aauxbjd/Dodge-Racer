@@ -8,17 +8,16 @@ public class Obstacle
     final int OBSTACLE_WIDTH = 80;
     final int OBSTACLE_LENGTH = 130;
     
+    int obstacleNumber;
     Image obstacleImg;
-    int obstacleXpos, obstacleYpos, obstacleDYpos;
+    int obstacleXpos, obstacleYpos, obstacleDYpos,obstacle2Xpos;
     Random randomX = new Random();
     
-    public Obstacle()
+    public Obstacle(String obstacleFile)
     {
-        ImageIcon obstacleImgFile = new ImageIcon("ob1.png");
+        ImageIcon obstacleImgFile = new ImageIcon(obstacleFile);
         obstacleImg = obstacleImgFile.getImage();
-        obstacleYpos = -200;
-        
-        
+        obstacleYpos = -700;    
     }
     
      public Rectangle getBounds() 
@@ -27,8 +26,36 @@ public class Obstacle
     }
     
     public void move()
-    {
-        obstacleYpos += 5;
+    {   
+        switch (obstacleNumber)
+        {
+            case 1:
+                if (obstacleYpos >= 661)    //making the obstacle disappear after it reaches ebd of bottom frame
+                {
+                    setObstacleYpos();  //same old Ypos
+                    setObstacleXpos();  //new X pos
+
+                }
+                obstacleYpos += 5;
+                break;
+                
+            case 2:
+                if (obstacleYpos >= 661)    //making the obstacle disappear after it reaches ebd of bottom frame
+                {
+                    setObstacleYpos();  //same old Ypos
+                    setObstacleXpos();  //new X pos
+
+                }
+               
+                obstacleYpos += 8;
+                break;
+                
+            
+                
+        }
+            
+        
+        
     }
     
     public Image getObstacleImg()
@@ -48,11 +75,12 @@ public class Obstacle
     
         public void setObstacleYpos()
     {
-        obstacleYpos = -200;
+        obstacleYpos = -700;
     }
         public void setObstacleXpos()
     {
-        obstacleXpos = randomX.nextInt(251+100) ;
+        obstacleXpos = randomX.nextInt(251)+100 ;
     }
+        
 
 }
