@@ -38,13 +38,21 @@ public class Display extends JPanel implements ActionListener
         if(score>=2)
         {
            obstacle2.obstacleNumber=2;
-//           if ( obstacle2.getObstacleXpos() - obstacle1.getObstacleXpos() <= 60 || obstacle1.getObstacleXpos() - obstacle2.getObstacleXpos() <= 60)
-//           {
-//              obstacle2.setObstacleXpos();
-//           }
+           if(obstacle1.obstacleXpos<400){
+            if (obstacle2.obstacleXpos >= obstacle1.obstacleXpos && obstacle2.obstacleXpos- obstacle1.obstacleXpos <= 40)  //stopping ob2 to crash ob1 on right side
+                    {
+                                obstacle2.setObstacleXpos();
+                    }
+             else if (obstacle2.obstacleXpos <= obstacle1.obstacleXpos && obstacle1.obstacleXpos- obstacle2.obstacleXpos <= 40)  //stopping ob2 to crash ob1 on left side
+                    {
+                         obstacle2.setObstacleXpos();
+                    }
+           }
+
           
            obstacle2.move();
         }
+       
          
         checkCollision();
 
@@ -96,19 +104,13 @@ public class Display extends JPanel implements ActionListener
         g.drawImage(playerCar.getCarImage(), playerCar.getCarXpos(), playerCar.getCarYpos(), null);//car image
   
        
-           g.drawImage(obstacle1.getObstacleImg(), obstacle1.obstacleXpos, obstacle1.obstacleYpos, null);
+        g.drawImage(obstacle1.getObstacleImg(), obstacle1.obstacleXpos, obstacle1.obstacleYpos, null);
                 // to see the rectangles that bound car and obstacle
                 // g.drawRect(playerCar.carXpos+20,playerCar.carYpos+20, playerCar.CAR_WIDTH-20, playerCar.CAR_LENGTH-20);
                 // g.drawRect(obstacle1.obstacleXpos+20,obstacle1.obstacleYpos+20, obstacle1.OBSTACLE_WIDTH-20, obstacle1.OBSTACLE_LENGTH-20);           
-         if (obstacle2.obstacleXpos >= obstacle1.obstacleXpos && obstacle2.obstacleXpos- obstacle1.obstacleXpos <= 60)  //stopping ob2 to crash ob1 on right side
-                {
-                     obstacle2.setObstacleXpos();
-                }
-         else if (obstacle2.obstacleXpos <= obstacle1.obstacleXpos && obstacle1.obstacleXpos- obstacle2.obstacleXpos <= 60)  //stopping ob2 to crash ob1 on left side
-                {
-                     obstacle2.setObstacleXpos();
-                }
-            g.drawImage(obstacle2.getObstacleImg(), obstacle2.obstacleXpos, obstacle2.obstacleYpos, null);
+             
+         
+         g.drawImage(obstacle2.getObstacleImg(), obstacle2.obstacleXpos, obstacle2.obstacleYpos, null);
         
         
 
