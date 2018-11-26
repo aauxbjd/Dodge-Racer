@@ -5,12 +5,19 @@ public class Window extends Display
 {
     public static void main (String[] args)
     {
+        Menu mainMenu = new Menu();
         Display DisplayBg = new Display();
         JFrame frame = new JFrame("Dodge Racer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(466, 700);
+        frame.add(mainMenu);
+        if(mainMenu.startGame == true)
+        {
+        frame.remove(mainMenu);
         frame.add(DisplayBg);
         frame.setVisible(true);
+        }
+        
        // System.err.println(frame.getContentPane().getSize().width); // w = 434-450 = 16 / H = 661 - 700 = 39
     }
     

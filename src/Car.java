@@ -49,6 +49,11 @@ public class Car
         return carImage;
     }
     
+    public void setCarXpos()
+    {
+        carXpos = 180;
+    }
+    
     //making car move with the arrow keys
     public void keyPressed(KeyEvent e) 
     {

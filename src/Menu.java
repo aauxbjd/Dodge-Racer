@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class Menu extends JFrame {
     String name;
+    boolean startGame = false;
 
     public Menu() {
 
@@ -12,12 +13,11 @@ public class Menu extends JFrame {
         button1.setAlignmentX(Component.CENTER_ALIGNMENT);
         button1.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent ac) {
-                JFrame userName = new JFrame("User Name");
-                name = JOptionPane.showInputDialog(userName, "Enter Player's Name?");
-                JOptionPane.showMessageDialog(userName,"Welcome "+name+"!!\n Click OK to Race");
-                new Display();
-                dispose();
+            public void actionPerformed(ActionEvent ac) 
+            {
+               startGame = true;
+               
+                
             }
         });
 
@@ -39,9 +39,5 @@ public class Menu extends JFrame {
         this.setVisible(true);
     }
     
-    public  String getName()
-    {
-        return name;
-    }
 
 }

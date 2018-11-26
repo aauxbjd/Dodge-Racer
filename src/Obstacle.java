@@ -79,7 +79,7 @@ public class Obstacle
     }
         public void setObstacleXpos()
     {
-        obstacleXpos = randomX.nextInt(251)+100 ;
+        obstacleXpos = randomX.nextInt(351) ;
     }
         
 
