@@ -3,40 +3,21 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Menu extends JFrame {
-    String name;
-    boolean startGame = false;
-
-    public Menu() {
-
-        JButton button1 = new JButton("Start Game");
-        button1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button1.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent ac) 
+public class Menu {
+    String Images[] = {"menuName.png","menuNewGame.png","menuLead.png","menuLoad.png","menuQuit.png"};
+   
+    
+    public void drawMenu(Graphics g)
+    {
+         
+        for(int i = 0; i < Images.length ; i++)
             {
-               startGame = true;
-               
+                ImageIcon menuNames = new ImageIcon(Images[i]);
+                Image menus = menuNames.getImage();
                 
-            }
-        });
-
-        JButton button2 = new JButton("Quit");
-        button2.setAlignmentX(Component.BOTTOM_ALIGNMENT);
-
-        button2.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent ac) {
-                dispose();
-            }
-        });
-
-        this.add(button2);
-        this.add(button1);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new FlowLayout());
-        this.setSize(465, 700);
-        this.setVisible(true);
+                g.drawImage(menus, 0, 0,null);
+                System.err.println(Images.length);
+             }
     }
     
 

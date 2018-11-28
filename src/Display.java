@@ -2,8 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-
 public class Display extends JPanel implements ActionListener
 {
     DodgeRacer_Road Road = new DodgeRacer_Road();
@@ -11,12 +9,22 @@ public class Display extends JPanel implements ActionListener
     Obstacle obstacle1 = new Obstacle("ob1.png");
     Obstacle obstacle2 = new Obstacle("ob2.png");
     Image lifeImage;
-    
-    
+    Menu mainMenu = new Menu();
+
     Timer time;
     int life = 3;
     int score;
-    boolean lost = false;
+    boolean collide = false;
+    
+    public static enum STATE
+    {
+        MENU,
+        GAME
+    };
+    public static STATE state = STATE.MENU;
+    
+    
+    
     
     public Display()
     { 
@@ -32,7 +40,7 @@ public class Display extends JPanel implements ActionListener
    
      public void actionPerformed(ActionEvent e)
     {
-         
+         if(state == STATE.GAME){
         repaint();
  
         Road.scroll();                         //updates road's xPos by adding 5
@@ -40,22 +48,17 @@ public class Display extends JPanel implements ActionListener
         
         obstacle1.obstacleNumber=1;
         obstacle1.move();
-        
-
-       
          
         checkCollision();
-
         score();
-         
-        
-        
+
         if ( life <=0)
         {
-            JOptionPane.showMessageDialog(null, "YOU LOST!!");
+            //call saving highscore
+            JOptionPane.showMessageDialog(null, "YOU LOST!! \n\n your score: "+score);
             System.exit(0);
-            
         }
+         }
          
     }
      
@@ -69,17 +72,17 @@ public class Display extends JPanel implements ActionListener
          
          if ( playerCarRect.intersects(obstacleRect1))   
          {
-             lost = true;
+             collide = true;
              obstacle1.setObstacleYpos();
          }
          else if (playerCarRect.intersects(obstacleRect2))
          {
-             lost = true;
+             collide = true;
              obstacle2.setObstacleYpos();
          }
          else if (playerCar.getCarXpos() == -20 || playerCar.getCarXpos() == 385)
          {
-              lost = true;
+              collide = true;
               playerCar.setCarXpos();
          }
          
@@ -94,10 +97,7 @@ public class Display extends JPanel implements ActionListener
             }
           }
           
-              
-         
-         
-     
+
      public void score()
      {
          if(obstacle1.getObstacleYpos()==660) 
@@ -105,40 +105,28 @@ public class Display extends JPanel implements ActionListener
          if(obstacle2.getObstacleYpos()==660) 
              score++;
          
-         if(lost == true)
+         if(collide == true)
         {
-            if(score-5 >=0)
-            {
-                score+=-5;
-            }
-            else if(score-10 >=0)
-            {
-                score+=-5;
-            }
-            else
-                score = 0;
-            
             life+=-1;
             obstacle2.setObstacleYpos();
-            lost = false;
+            collide = false;
         }
          
        // making obstacle 2 visible after score is reached to 2. 
        if(score>=2)
         {
            obstacle2.obstacleNumber=2;
-          
            obstacle2.move();
         }
      }
-     
 
-
-    public void paint (Graphics g)
+     public void paint (Graphics g)
     {
+         
         
         super.paint(g);
         
+       
         
         int j = 0;
         g.drawImage(Road.getImage(), 0, Road.getRoadYpos(), null); //first road image
@@ -164,12 +152,14 @@ public class Display extends JPanel implements ActionListener
                //  g.drawRect(obstacle2.obstacleXpos+20,obstacle2.obstacleYpos+20, obstacle2.OBSTACLE_WIDTH-20, obstacle2.OBSTACLE_LENGTH-20);  
         //printing Score on screen
         g.setColor(Color.green);
-        
         g.drawString("SCORE : " +score, 20, 20);
         
+         if(state == STATE.MENU){
+            mainMenu.drawMenu(g);
+        }
+        
     }
-
-     
+  
     //connecting ActionListener to the car object to make it move
      private class ActionListener extends KeyAdapter
     {
