@@ -35,11 +35,13 @@ public class Display extends JPanel implements ActionListener
         addKeyListener(new ActionListener());    //adding keylistener on the screen
         time = new Timer(5,this);                // this calls actionPerformed every 5 miliseconds
         time.start();
-
+               
+this.addMouseListener( mainMenu);
     }
    
      public void actionPerformed(ActionEvent e)
     {
+         
          if(state == STATE.GAME){
         repaint();
  
