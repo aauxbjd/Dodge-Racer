@@ -6,7 +6,7 @@ import javax.swing.*;
 public class DodgeRacer_Road 
 {
     Image road;
-    int RoadXpos,RoadYpos,RoadY2pos;
+    public static int RoadXpos,RoadYpos,RoadY2pos;
     
     public DodgeRacer_Road()
     {

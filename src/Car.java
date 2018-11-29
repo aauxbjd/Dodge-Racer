@@ -10,7 +10,7 @@ public class Car
     final int CAR_LENGTH = 100;
     
     Image carImage;
-    int carXpos, carYpos, carDx;
+   public static int carXpos, carYpos, carDx;
     
     
     public Car()

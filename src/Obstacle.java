@@ -10,8 +10,9 @@ public class Obstacle
     
     int obstacleNumber;
     Image obstacleImg;
-    int obstacleXpos, obstacleYpos, obstacleDYpos,obstacle2Xpos;
+    public static int obstacleXpos, obstacleYpos, obstacleDYpos,obstacle2Xpos;
     Random randomX = new Random();
+    
     
     public Obstacle(String obstacleFile)
     {
