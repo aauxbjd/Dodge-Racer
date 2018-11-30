@@ -11,9 +11,7 @@ public class SaveScore {
         try (
         FileWriter saveFile = new FileWriter("Scores.txt", true)) 
         {
-
-            saveFile.append("\n" + Menu.playerName+"    " + fScore + "\n");
-        
+            saveFile.append("\n" + Menu.playerName+"    " + fScore + "\n");       
         }
 
     }

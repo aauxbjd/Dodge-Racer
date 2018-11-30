@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Window extends JFrame
-{
+{ 
+    Display DisplayBg = new Display();
     LoadScore lScore = new LoadScore();
+    
     public static void main (String[] args)
     {
         Window game = new Window();
@@ -15,8 +17,6 @@ public class Window extends JFrame
     
     public Window()
     {
-        Display DisplayBg = new Display();
-        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(466, 725);
         this.add(DisplayBg);
@@ -29,12 +29,13 @@ public class Window extends JFrame
         JMenuBar menu = new JMenuBar();
         this.setJMenuBar(menu);
         
-        JMenu men1 = new JMenu("Menu1");
+        JMenu men1 = new JMenu("Menu");
         menu.add(men1);
-        JMenuItem item1 = new JMenuItem("HighScore");
+        JMenuItem item1 = new JMenuItem("Scores     ");
         men1.add(item1);
         item1.addActionListener (new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent ac)
             {
                 try {
@@ -47,9 +48,9 @@ public class Window extends JFrame
 
         });
         
-        JMenu men2 = new JMenu("Menu2");
+        JMenu men2 = new JMenu("Instructions     ");
         menu.add(men2);
-        JMenuItem item2 = new JMenuItem("item2");
-        men2.add(item2);
+        //JMenuItem item2 = new JMenuItem("");
+        //men2.add(item2);
     }
 }

@@ -10,7 +10,7 @@ public class Obstacle
     
     int obstacleNumber;
     Image obstacleImg;
-    public static int obstacleXpos, obstacleYpos, obstacleDYpos,obstacle2Xpos;
+   public int obstacleXpos, obstacleYpos, obstacleDYpos,obstacle2Xpos;
     Random randomX = new Random();
     
     
@@ -77,6 +77,10 @@ public class Obstacle
         public void setObstacleYpos()
     {
         obstacleYpos = -700;
+    }
+        public void setObstacleXpos(int x)
+    {
+        obstacleXpos = x;
     }
         public void setObstacleXpos()
     {
