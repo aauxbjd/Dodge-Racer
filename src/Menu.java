@@ -1,3 +1,17 @@
+/*
+
+Authors : Ayush Banjade, safin Bjagai, Sagar Pandeya
+Date :    11/30/2018
+
+This is a car racing game based on java
+
+Functions:
+1. Save game (can use 'S' shortcut key to save)
+2. Load game (can use 'A' shortcut key to load previously saved game)
+3. Pause game ( use 'P' to pause and resume back)
+4. Saves your score in a file which you can view in a Jwindow
+
+*/
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -47,6 +61,11 @@ public class Menu implements MouseListener {
             if (mouseY >= 230 && mouseY <= 230 + 50) {
                 //System.err.println("newGame");
                 playerName = JOptionPane.showInputDialog(null, "Please enter your name:");
+                System.err.println(playerName);
+                if (playerName.isEmpty())
+                {
+                    playerName = "Anonymous";
+                }
                 Display.state = Display.STATE.GAME;
             }
         }

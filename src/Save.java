@@ -1,3 +1,17 @@
+/*
+
+Authors : Ayush Banjade, safin Bjagai, Sagar Pandeya
+Date :    11/30/2018
+
+This is a car racing game based on java
+
+Functions:
+1. Save game (can use 'S' shortcut key to save)
+2. Load game (can use 'A' shortcut key to load previously saved game)
+3. Pause game ( use 'P' to pause and resume back)
+4. Saves your score in a file which you can view in a Jwindow
+
+*/
 
 import java.io.*;
 import javax.swing.JFileChooser;
@@ -5,11 +19,10 @@ import javax.swing.JOptionPane;
 
 public class Save {
 
-    // life, score, collide, Road.RoadYpos , Road.RoadY2pos, playerCar.carXpos,obstacle1.obstacleXpos,obstacle1.obstacleYpos,obstacle2.obstacleXpos,obstacle2.obstacleYpos
     String fileName;
 
-    public void saveScore(String player,int lif, int scor, boolean collide, int rY, int rY2, int cX, int o1X, int o1Y, int o2X, int o2Y) throws Exception {
-        // Create some data to write.
+    public void saveScore(String player, int lif, int scor, boolean collide, int rY, int rY2, int cX, int o1X, int o1Y, int o2X, int o2Y) throws Exception {
+
         if (Display.state == Display.STATE.GAME) {
             Display.state = Display.state.PAUSE;
         }
@@ -29,7 +42,7 @@ public class Save {
 
             // Write the data to the file.
             saveFile.write("\n");
-            saveFile.write(playerN+ "\n");
+            saveFile.write(playerN + "\n");
             saveFile.write(LIFE + "\n");
             saveFile.write(SCORE + "\n");
             saveFile.write(RY + "\n");

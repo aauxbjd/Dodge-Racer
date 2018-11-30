@@ -1,104 +1,12 @@
 
-Ayush    1
+Ayush     10
 
-null    0
+Ayush     5
 
-null    0
+Sagar      5
 
-j    0
+Safin      2
 
-ax    0
+Binod      1
 
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-a    0
-
-null    0
-
-l    0
-
-a    0
-
-null    0
-
-null    0
-
-null    0
-
-lk    0
-
-l    0
-
-a    0
-
-null    0
-
-null    0
-
-null    0
-
-k    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-l    0
-
-null    5
-
-null    7
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-aa    0
-
-null    0
-
-playerN3    631
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-null    0
-
-null    0
+asca       0

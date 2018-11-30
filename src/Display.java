@@ -1,16 +1,31 @@
+/*
+
+Authors : Ayush Banjade, safin Bjagai, Sagar Pandeya
+Date :    11/30/2018
+
+This is a car racing game based on java
+
+Functions:
+1. Save game (can use 'S' shortcut key to save)
+2. Load game (can use 'A' shortcut key to load previously saved game)
+3. Pause game ( use 'P' to pause and resume back)
+4. Saves your score in a file which you can view in a Jwindow
+
+*/
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-//  life, score, collide, Road.RoadYpos , Road.RoadY2pos, playerCar.carXpos,
-//  obstacle1.obstacleXpos,obstacle1.obstacleYpos,obstacle2.obstacleXpos,obstacle2.obstacleYpos
 
 public class Display extends JPanel implements ActionListener {
 
     DodgeRacer_Road Road = new DodgeRacer_Road();
+    Sound sounds = new Sound();
     Car playerCar = new Car();
     Obstacle obstacle1 = new Obstacle("ob1.png");
     Obstacle obstacle2 = new Obstacle("ob2.png");
@@ -28,8 +43,8 @@ public class Display extends JPanel implements ActionListener {
     public static boolean collide = false;
 
     boolean pause;
-    
-    static  int x ,y;
+
+    static int x, y;
 
     int obx = obstacle1.obstacleXpos;
     int oby = obstacle1.obstacleYpos;
@@ -47,21 +62,19 @@ public class Display extends JPanel implements ActionListener {
 
         setFocusable(true);                      //setting focus to the screen
         addKeyListener(new ActionListener());    //adding keylistener on the screen
-        time = new Timer(5, this);                // this calls actionPerformed every 5 miliseconds
+        time = new Timer(2, this);                // this calls actionPerformed every 5 miliseconds
         time.start();
 
         addMouseListener(mainMenu);
     }
 
     public void actionPerformed(ActionEvent e) {
-      
-        
 
         if (state == STATE.GAME) {
+
             Player = Menu.playerName;
-            
+
             repaint();
-            
 
             Road.scroll();                         //updates road's xPos by adding 5
             playerCar.move();
@@ -71,9 +84,9 @@ public class Display extends JPanel implements ActionListener {
 
             checkCollision();
             score();
-
+            boolean lost = false;
             if (life <= 0) {
-
+                lost = true;
                 try {
                     sScore.saveScore(score);
                 } catch (Exception ex) {
@@ -83,8 +96,30 @@ public class Display extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "YOU LOST!! \n\n your score: " + score);
                 System.exit(0);
             }
-            
-            
+            if (lost == false) {
+                try {
+                    sounds.play("carsound.wav");
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (lost == true) {
+                try {
+                    lost = true;
+                    sounds.stop("carsound.wav");
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
 
     }
@@ -97,11 +132,38 @@ public class Display extends JPanel implements ActionListener {
 
         if (playerCarRect.intersects(obstacleRect1)) {
             collide = true;
+            try {
+                sounds.play("crash.wav");
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            }
             obstacle1.setObstacleYpos();
         } else if (playerCarRect.intersects(obstacleRect2)) {
             collide = true;
+            try {
+                sounds.play("crash.wav");
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            }
             obstacle2.setObstacleYpos();
         } else if (playerCar.getCarXpos() == -20 || playerCar.getCarXpos() == 385) {
+            try {
+                sounds.play("crash.wav");
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            }
             collide = true;
             playerCar.setCarXpos();
         }
@@ -138,7 +200,6 @@ public class Display extends JPanel implements ActionListener {
     }
 
     public void paint(Graphics g) {
-        
 
         super.paint(g);
 
@@ -152,10 +213,9 @@ public class Display extends JPanel implements ActionListener {
         g.drawImage(obstacle2.getObstacleImg(), obstacle2.obstacleXpos, obstacle2.obstacleYpos, null);
 
         //System.err.println("obx: "+obx+ "\n OBX: " + obstacle1.obstacleXpos);
-        
         g.setColor(Color.yellow);
         g.drawString(Player, 20, 20);
-        
+
         g.setColor(Color.blue);
         g.drawString("LIVES : ", 20, 60);
 
@@ -166,18 +226,15 @@ public class Display extends JPanel implements ActionListener {
         //  to see the rectangles that bound car and obstacle
         //g.setColor(Color.blue);
         //  g.drawRect(playerCar.carXpos+20,playerCar.carYpos+20, playerCar.CAR_WIDTH-20, playerCar.CAR_LENGTH-20);
-       // g.drawRect(obstacle1.obstacleXpos + 20, obstacle1.obstacleYpos + 20, obstacle1.OBSTACLE_WIDTH - 20, obstacle1.OBSTACLE_LENGTH - 20);
+        // g.drawRect(obstacle1.obstacleXpos + 20, obstacle1.obstacleYpos + 20, obstacle1.OBSTACLE_WIDTH - 20, obstacle1.OBSTACLE_LENGTH - 20);
         //  g.drawRect(obstacle2.obstacleXpos+20,obstacle2.obstacleYpos+20, obstacle2.OBSTACLE_WIDTH-20, obstacle2.OBSTACLE_LENGTH-20);  
         //printing Score on screen
         g.setColor(Color.green);
         g.drawString("SCORE : " + score, 20, 40);
-        
-     
+
         if (state == STATE.MENU) {
             mainMenu.drawMenu(g);
         }
-          
-        
 
     }
 
@@ -196,43 +253,28 @@ public class Display extends JPanel implements ActionListener {
 
                 if (state == STATE.GAME) {
                     state = STATE.PAUSE;
-               
-                     saveGame();
+
+                    saveGame();
                     JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
                 }
             }
-                    
 
-            if (axx == KeyEvent.VK_A ) {
-                
+            if (axx == KeyEvent.VK_A) {
+
                 if (state == STATE.GAME) {
                     state = STATE.PAUSE;
                     loadGame();
                     JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
-                } 
+                }
 
                 if (state == STATE.MENU) {
-                    
+
                     loadGame();
-    
+
                     state = STATE.PAUSE;
                     JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
-             
-                    
-                    
-                    //JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
-                } 
-                
-//                 if (state == STATE.PAUSE) {
-//                    
-//                    loadGame();
-//                    state = STATE.PAUSE;
-//                    JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
-//                } 
-                // loadGame();
-                
-                
-                
+
+                }
 
             }
 
@@ -242,7 +284,6 @@ public class Display extends JPanel implements ActionListener {
                     state = STATE.PAUSE;
                     JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
 
-                    
                 } else if (state == STATE.PAUSE) {
 
                     state = STATE.GAME;
@@ -251,15 +292,14 @@ public class Display extends JPanel implements ActionListener {
                 if (state == STATE.MENU) {
                     state = STATE.MENU;
                 }
-                
+
             }
 
         }
 
     }
-    
-    public void saveGame()
-    {
+
+    public void saveGame() {
         try {
             saveFile.saveScore(Menu.playerName, life, score, collide, Road.RoadYpos, Road.RoadY2pos, playerCar.carXpos, obstacle1.obstacleXpos, obstacle1.obstacleYpos, obstacle2.obstacleXpos, obstacle2.obstacleYpos);
         } catch (Exception ex) {
@@ -267,34 +307,26 @@ public class Display extends JPanel implements ActionListener {
         }
     }
 
-    public  void loadGame() {
-        
-         try {
-                    loadGame.loadFile();
-                    
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "wronggg ");
-                }
-                
-//                if(state == STATE.GAME)
-//                {
-                Menu.playerName = loadGame.PlayerNam;
-                life = loadGame.LIFE;
-                score = loadGame.SCORE;
-                collide = loadGame.hyperactive;
-                Road.RoadYpos = loadGame.RY;
-                Road.RoadY2pos = loadGame.RY2;
-                Car.carXpos = loadGame.CX;
-                obstacle1.obstacleXpos = loadGame.O1X;
-                obstacle1.obstacleYpos = loadGame.O1Y;
-                obstacle2.obstacleXpos = loadGame.O2X;
-                obstacle2.obstacleYpos = loadGame.O2Y;
-                //state  = STATE.GAME;
-//                }
-//                else
-//                {
-//                    System.err.println("err");
-//                }
+    public void loadGame() {
+
+        try {
+            loadGame.loadFile();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "wronggg ");
+        }
+
+        Menu.playerName = loadGame.PlayerNam;
+        life = loadGame.LIFE;
+        score = loadGame.SCORE;
+        collide = loadGame.hyperactive;
+        Road.RoadYpos = loadGame.RY;
+        Road.RoadY2pos = loadGame.RY2;
+        Car.carXpos = loadGame.CX;
+        obstacle1.obstacleXpos = loadGame.O1X;
+        obstacle1.obstacleYpos = loadGame.O1Y;
+        obstacle2.obstacleXpos = loadGame.O2X;
+        obstacle2.obstacleYpos = loadGame.O2Y;
 
     }
 
