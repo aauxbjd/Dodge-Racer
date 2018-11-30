@@ -1,247 +1,79 @@
 
-xxx    0
+Ayush    1
 
-sagar PUTI    1
+null    0
 
-null    5
+null    0
 
-null    5
+j    0
 
-null    5
+ax    0
 
-null    5
+null    0
 
-null    5
+null    0
 
-null    5
+null    0
 
-null    5
+null    0
 
-null    5
+null    0
 
-null    5
+null    0
 
-gv    2
-
-l    2
-
-l    2
-
-kk    2
-
-k    11
-
-null    18
-
-null    26
-
-null    27
-
-null    28
-
-k    18
-
-lk    4
-
-null    30
-
-l    6
-
-null    32
-
-null    32
-
-null    40
-
-ayush    5
-
-null    20
-
-null    27
-
-null    29
-
-s    31
-
-s    31
-
-s    32
-
-ayush    0
+null    0
 
 a    0
 
-null    2
+null    0
 
-s    0
+l    0
 
-null    5
-
-null    8
-
-jn    2
-
-ll    5
-
-jh    1
-
-null    2
-
-null    4
-
-null    4
-
-null    5
-
-null    5
-
-klk    13
+a    0
 
 null    0
 
-jj    1
-
-a    11
-
-a    12
-
-a    14
-
-a    15
-
-a    16
-
-a    16
-
-a    20
-
-a    22
-
-a    22
-
-a    22
-
-a    22
-
-a    22
-
-a    24
-
-a    24
-
-a    24
-
-a    24
-
-a    24
-
-a    24
-
-a    24
+null    0
 
 null    0
 
-jp    7
+lk    0
 
-jjh    5
+l    0
 
-jjh    7
-
-jk    1
-
-jk    14
-
-jk    17
-
-jk    17
-
-jk    17
-
-jk    18
-
-jk    18
-
-jk    19
-
-jk    19
-
-jk    24
-
-jk    26
-
-jk    27
-
-jk    27
-
-jk    31
-
-null    32
-
-null    33
-
-null    33
-
-as    35
-
-as    35
-
-as    36
-
-as    38
-
-as    38
-
-as    38
-
-as    38
-
-as    39
-
-as    39
-
-as    39
-
-as    39
-
-as    39
-
-as    39
-
-as    39
-
-as    39
-
-as    40
-
-null    41
-
-null    41
-
-null    45
-
-null    45
-
-a    1
-
-a    1
-
-a    1
-
-a    1
-
-as    2
-
-as    5
-
-kj    7
-
-null    10
-
-null    10
-
-null    14
+a    0
 
 null    0
+
+null    0
+
+null    0
+
+k    0
+
+a    0
+
+a    0
+
+a    0
+
+a    0
+
+a    0
+
+a    0
+
+a    0
+
+a    0
+
+a    0
+
+l    0
+
+null    5
+
+null    7
 
 null    0
 
@@ -253,49 +85,9 @@ null    0
 
 aa    0
 
-kk    0
-
-kj    0
-
-a    0
-
 null    0
 
-j    4
-
-null    11
-
-null    0
-
-jj    0
-
-jj    4
-
-a    0
-
-a    3
-
-as    0
-
-as    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-a    0
-
-hh    0
-
-hh    0
-
-hh    0
+playerN3    631
 
 null    0
 
@@ -306,22 +98,6 @@ null    0
 null    0
 
 null    0
-
-a    0
-
-l    0
-
-l    1
-
-a    2
-
-null    5
-
-null    0
-
-null    0
-
-null    1
 
 null    0
 

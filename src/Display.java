@@ -137,28 +137,8 @@ public class Display extends JPanel implements ActionListener {
         }
     }
 
-//    public  void setOb1X()
-//    {  
-//        obstacle1.setObstacleXpos(loadFile.O1X);
-//    }
-//    public  void setOb1Y()
-//    {  
-//        obstacle1.obstacleYpos = loadFile.O1Y;
-//    }
-//    public  void setOb2X()
-//    {  
-//        obstacle2.obstacleXpos = loadFile.O2X;
-//    }
-//    public  void setOb2Y()
-//    {  
-//        obstacle2.obstacleYpos = loadFile.O2Y;
-//    }
-//    
     public void paint(Graphics g) {
         
-       // x = obstacle1.obstacleXpos;
-         //y = obstacle1.obstacleYpos;
-
 
         super.paint(g);
 
@@ -192,11 +172,7 @@ public class Display extends JPanel implements ActionListener {
         g.setColor(Color.green);
         g.drawString("SCORE : " + score, 20, 40);
         
-        if (state == STATE.PAUSE) {
-            g.setColor(Color.red);
-            g.drawString("GAME PAUSED PRESS 'P' TO RESUME", 100,  300);
-        }
-
+     
         if (state == STATE.MENU) {
             mainMenu.drawMenu(g);
         }
@@ -220,16 +196,12 @@ public class Display extends JPanel implements ActionListener {
 
                 if (state == STATE.GAME) {
                     state = STATE.PAUSE;
-
-                    try {
-                        saveFile.saveScore(life, score, collide, Road.RoadYpos, Road.RoadY2pos, playerCar.carXpos, obstacle1.obstacleXpos, obstacle1.obstacleYpos, obstacle2.obstacleXpos, obstacle2.obstacleYpos);
-                    } catch (Exception ex) {
-                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+               
+                     saveGame();
                     JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
                 }
             }
-
+                    
 
             if (axx == KeyEvent.VK_A ) {
                 
@@ -240,9 +212,24 @@ public class Display extends JPanel implements ActionListener {
                 } 
 
                 if (state == STATE.MENU) {
-                    state = STATE.MENU;
+                    
                     loadGame();
+    
+                    state = STATE.PAUSE;
+                    JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
+             
+                    
+                    
+                    //JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
                 } 
+                
+//                 if (state == STATE.PAUSE) {
+//                    
+//                    loadGame();
+//                    state = STATE.PAUSE;
+//                    JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
+//                } 
+                // loadGame();
                 
                 
                 
@@ -270,6 +257,15 @@ public class Display extends JPanel implements ActionListener {
         }
 
     }
+    
+    public void saveGame()
+    {
+        try {
+            saveFile.saveScore(Menu.playerName, life, score, collide, Road.RoadYpos, Road.RoadY2pos, playerCar.carXpos, obstacle1.obstacleXpos, obstacle1.obstacleYpos, obstacle2.obstacleXpos, obstacle2.obstacleYpos);
+        } catch (Exception ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public  void loadGame() {
         
@@ -277,12 +273,12 @@ public class Display extends JPanel implements ActionListener {
                     loadGame.loadFile();
                     
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "No File Selected ");
+                    JOptionPane.showMessageDialog(null, "wronggg ");
                 }
                 
-                if(state == STATE.GAME)
-                {
-                
+//                if(state == STATE.GAME)
+//                {
+                Menu.playerName = loadGame.PlayerNam;
                 life = loadGame.LIFE;
                 score = loadGame.SCORE;
                 collide = loadGame.hyperactive;
@@ -293,12 +289,12 @@ public class Display extends JPanel implements ActionListener {
                 obstacle1.obstacleYpos = loadGame.O1Y;
                 obstacle2.obstacleXpos = loadGame.O2X;
                 obstacle2.obstacleYpos = loadGame.O2Y;
-                state  = STATE.GAME;
-                }
-                else
-                {
-                    System.err.println("err");
-                }
+                //state  = STATE.GAME;
+//                }
+//                else
+//                {
+//                    System.err.println("err");
+//                }
 
     }
 

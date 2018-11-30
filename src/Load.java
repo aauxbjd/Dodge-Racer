@@ -8,25 +8,24 @@ public class Load {
     int LIFE, SCORE, RY, RY2, CX, O1X, O1Y, O2X, O2Y;
     boolean hyperactive;
     String fileName;
+    String PlayerNam;
 
     public void loadFile() throws Exception {
-//        if (Display.state == Display.STATE.GAME) {
-//            Display.state = Display.state.PAUSE;
-  //      }
+
 
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: "
-                    + chooser.getSelectedFile().getName());
+           
             fileName = chooser.getSelectedFile().getName();
 
-            BufferedReader saveFile = new BufferedReader(new FileReader(fileName));
+            BufferedReader saveFile = new BufferedReader(new FileReader(chooser.getCurrentDirectory() + "\\" + fileName));
 
             // Throw away the blank line at the top.
             saveFile.readLine();
             // Get the integer value from the String.
+            PlayerNam = saveFile.readLine();
             LIFE = Integer.parseInt(saveFile.readLine());
             SCORE = Integer.parseInt(saveFile.readLine());
             RY = Integer.parseInt(saveFile.readLine());
@@ -40,21 +39,26 @@ public class Load {
 
             // Not needed, but read blank line at the bottom.
             saveFile.readLine();
+                        
 
             saveFile.close();
 
-            // Print out the values.
-            Display.state = Display.STATE.GAME;
-            System.out.println("x=" + LIFE + " y=" + SCORE + " z=" + RY + "\n");
-            System.out.println("name: " + RY2 + " race: " + CX + "\n");
-            System.out.println();
-        } else if (returnVal == JFileChooser.CANCEL_OPTION) {
+            System.err.println(LIFE +"\n" +SCORE+"\n" +RY+"\n" +RY2+"\n" +CX+"\n" +O1X+"\n" +
+                    O1Y+"\n" +O2X+"\n" +O2Y+"\n" +hyperactive);
+          //  Display.state = Display.STATE.GAME;
+          if(Display.state == Display.STATE.MENU )
+                        {
+                            Display.state = Display.STATE.PAUSE;
+                        }
+        
+        
+        } if (returnVal == JFileChooser.CANCEL_OPTION) {
             JOptionPane.showMessageDialog(null, "No File Selected ");
-//                    if(Display.state == Display.STATE.MENU )
-//                        {
-//                            Display.state = Display.STATE.MENU;
-//                        }
-//                    if(Display.state == Display.STATE.PAUSE )
+                    if(Display.state == Display.STATE.MENU )
+                        {
+                            Display.state = Display.STATE.MENU;
+                        }
+//                    if (Display.state == Display.STATE.PAUSE )
 //                        {
 //                            Display.state = Display.STATE.PAUSE;
 //                            //JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");

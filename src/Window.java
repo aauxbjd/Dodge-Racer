@@ -48,9 +48,31 @@ public class Window extends JFrame
 
         });
         
-        JMenu men2 = new JMenu("Instructions     ");
+        JMenu men2 = new JMenu("Options     ");
         menu.add(men2);
-        //JMenuItem item2 = new JMenuItem("");
-        //men2.add(item2);
+        JMenuItem item2 = new JMenuItem("Save Game");
+        men2.add(item2);
+        item2.addActionListener (new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ac)
+            {
+                DisplayBg.saveGame();
+            }
+
+        });
+        
+        JMenuItem item3 = new JMenuItem("Load Game");
+        men2.add(item3);
+        item3.addActionListener (new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ac)
+            {
+                DisplayBg.loadGame();
+                JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
+            }
+
+        });
     }
 }

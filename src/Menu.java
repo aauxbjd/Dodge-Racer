@@ -77,9 +77,16 @@ public class Menu implements MouseListener {
         if (mouseX >= 100 && mouseX <= 100 + 250) {       //load game
             if (mouseY >= 373 && mouseY <= 373 + 50) {
 
-                load = true;
-                //Display.loadGame();
-                //Display.state = Display.STATE.GAME;
+                try {
+                    loadGame.loadFile();
+                    Menu.playerName = loadGame.PlayerNam;
+                    //Display.state = Display.STATE.GAME;
+                     JOptionPane.showMessageDialog(null, "GAME PAUSED\n PRESS 'p' TO RESUME ");
+                } catch (Exception ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+               
+                }
+                
 
                 
             }

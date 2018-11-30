@@ -8,12 +8,12 @@ public class Save {
     // life, score, collide, Road.RoadYpos , Road.RoadY2pos, playerCar.carXpos,obstacle1.obstacleXpos,obstacle1.obstacleYpos,obstacle2.obstacleXpos,obstacle2.obstacleYpos
     String fileName;
 
-    public void saveScore(int lif, int scor, boolean collide, int rY, int rY2, int cX, int o1X, int o1Y, int o2X, int o2Y) throws Exception {
+    public void saveScore(String player,int lif, int scor, boolean collide, int rY, int rY2, int cX, int o1X, int o1Y, int o2X, int o2Y) throws Exception {
         // Create some data to write.
         if (Display.state == Display.STATE.GAME) {
             Display.state = Display.state.PAUSE;
         }
-
+        String playerN = player;
         int LIFE = lif, SCORE = scor, RY = rY, RY2 = rY2, CX = cX, O1X = o1X, O1Y = o1Y, O2X = o2X, O2Y = o2Y;
         boolean hyperactive = collide;
 
@@ -29,6 +29,7 @@ public class Save {
 
             // Write the data to the file.
             saveFile.write("\n");
+            saveFile.write(playerN+ "\n");
             saveFile.write(LIFE + "\n");
             saveFile.write(SCORE + "\n");
             saveFile.write(RY + "\n");
