@@ -1,6 +1,6 @@
 /*
 
-Authors : Ayush Banjade, safin Bjagai, Sagar Pandeya
+Authors : Ayush Banjade.
 Date :    11/30/2018
 
 This is a car racing game based on java
